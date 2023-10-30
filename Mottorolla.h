@@ -1,16 +1,21 @@
 #pragma once
 #include <iostream>
 #include <string.h>
+#include <vector>
+#include <stdlib.h>
+#define LIMIT 255
+
 using std::string;
 using std::cout;
 using std::cin;
+using std::vector;
 
 // ПРОВЕРКА НА ДУРАКА
 
-namespace FoolCheck {
+namespace FC {
     
     //                NUMBERS
-                                            
+    
     //                                                  INTEGER
 
     //@return void
@@ -504,3 +509,71 @@ namespace FoolCheck {
     }
 
 } // namespace FoolCheck
+
+// ГЕНЕРАТОРЫ
+
+namespace Gen {
+    // Генерирует имена по маске
+    //@pram Alph String. Это маска по которой генерируются имена
+    //@return String
+    string NameGenMask(string Alphabet) {
+        vector<int> CountSumbols(Alphabet.length());
+        string result  = "";
+        static string Lastreturn;
+        static string LastAlphabet;
+        int cursor = 0;
+        if(Lastreturn == "" || LastAlphabet[0] != Alphabet[0]) {
+            LastAlphabet = Alphabet;
+            Lastreturn = Alphabet;
+            return Alphabet;
+        } else if(Lastreturn.length() < LIMIT-4) {
+            for(int i = 0; i < Lastreturn.length(); i++) {
+                for(int j = 0; j < Alphabet.length(); j++) {
+                    if(Lastreturn[i] == Alphabet[j]) {
+                        CountSumbols[j]++;
+                        if(CountSumbols[j] > 1 && j > cursor) {
+                            cursor = j;
+                        }
+                    }
+                }
+            }
+            CountSumbols[cursor]++;
+            for(int i = 0; i < Alphabet.length(); i++) {
+                for(int j = 0; j < CountSumbols[i]; j++) {
+                    result += Alphabet[i];
+                }
+            }
+            Lastreturn = result;
+            LastAlphabet = Alphabet;
+            return result;
+        } else {
+            for(int i = 0; i < Lastreturn.length(); i++) {
+                for(int j = 0; j < Alphabet.length(); j++) {
+                    if(Lastreturn[i] == Alphabet[j]) {
+                        CountSumbols[j]++;
+                        if(CountSumbols[j] > 1 && j > cursor) {
+                            cursor = j;
+                        }
+                    }
+                }
+            }
+            if(cursor < Alphabet.length()-1) {
+                CountSumbols[cursor] = 1;
+                CountSumbols[cursor+1]++;
+            } else {
+                    LastAlphabet = Alphabet;
+                    return NULL;
+                }
+            for(int i = 0; i < Alphabet.length(); i++) {
+                for(int j = 0; j < CountSumbols[i]; j++) {
+                    result += Alphabet[i];
+                }
+            }
+            LastAlphabet = Alphabet;
+            Lastreturn = result;
+            return result;
+        }
+    }
+    
+    
+} // namespace Generators
