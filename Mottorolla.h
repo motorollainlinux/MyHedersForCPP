@@ -33,6 +33,9 @@ namespace FC {
                 IsCorrect = true;
                 for(size_t i = 0; i < Enter.length() && IsCorrect; i++) {
                     if(Enter[i] < '0' || Enter[i] > '9') {
+                        if(i == 0 && Enter[i] == '-')
+                        IsCorrect = true;
+                        else
                         IsCorrect = false;
                     }
                 }
@@ -53,6 +56,9 @@ namespace FC {
                 IsCorrect = true;
                 for(size_t i = 0; i < Enter.length() && IsCorrect; i++) {
                     if(Enter[i] < '0' || Enter[i] > '9') {
+                        if(i == 0 && Enter[i] == '-')
+                        IsCorrect = true;
+                        else
                         IsCorrect = false;
                     }
                 }
@@ -89,6 +95,9 @@ namespace FC {
                         IsCorrect = false;
                          
                     } else if(Enter[i] < '0' || Enter[i] > '9') {
+                        if(i == 0 && Enter[i] == '-')
+                        IsCorrect = true;
+                        else
                         IsCorrect = false;
                     }
                 }
@@ -119,6 +128,9 @@ namespace FC {
                         IsCorrect = false;
                          
                     } else if(Enter[i] < '0' || Enter[i] > '9') {
+                        if(i == 0 && Enter[i] == '-')
+                        IsCorrect = true;
+                        else
                         IsCorrect = false;
                     }
                 }
@@ -149,6 +161,9 @@ namespace FC {
                         IsCorrect = false;
                          
                     } else if(Enter[i] < '0' || Enter[i] > '9') {
+                        if(i == 0 && Enter[i] == '-')
+                        IsCorrect = true;
+                        else
                         IsCorrect = false;
                     }
                 }
@@ -179,6 +194,9 @@ namespace FC {
                         IsCorrect = false;
                          
                     } else if(Enter[i] < '0' || Enter[i] > '9') {
+                        if(i == 0 && Enter[i] == '-')
+                        IsCorrect = true;
+                        else
                         IsCorrect = false;
                     }
                 }
