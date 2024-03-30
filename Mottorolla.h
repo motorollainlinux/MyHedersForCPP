@@ -10,6 +10,18 @@ using std::cout;
 using std::cin;
 using std::vector;
 
+void Promt() {
+    cout << "Created whis using \"Mottorolla.h\" \n";
+    cout << "Mottorollainlinux: https://github.com/motorollainlinux \n";
+    cout << "(c)2024 All rights reserved \n";
+}
+void Promt(string User, int Age) {
+    cout << "Created whis using \"Mottorolla.h\" \n";
+    cout << "Header create by Mottorollainlinux: https://github.com/motorollainlinux \n";
+    cout << "Programm create by " << User << "\n";
+    cout << "(c)" << Age << " All rights reserved \n";
+}
+
 // ПРОВЕРКА НА ДУРАКА
 
 namespace FC {
@@ -532,7 +544,7 @@ namespace FC {
 
 namespace Gen {
     // Генерирует имена по маске
-    //@pram Alph String. Это маска по которой генерируются имена
+    //@param Alphabet String. Это маска по которой генерируются имена
     //@return String
     string NameGenMask(string Alphabet) {
         vector<int> CountSumbols(Alphabet.length());
@@ -592,6 +604,103 @@ namespace Gen {
             return result;
         }
     }
+    // RANDOM GENERATORS
+
+    //                                                                  INT
+
+    ///@param Min int. Минимальное значение
+    ///@param Max int. Максимальное значение
+    ///@param Val int или int* или int**. Переменная, в которую будет записано рандомное число (не обязательно)
+    ///@param Count int. Число значений, которые нужно сгенерировать (не обязательно)
+    ///@param Rows int. число строк 2-х мерного массива, заменяет Count (не обязательно)
+    ///@param Columns int. число столбцов 2-х мерного массива, заменяет Count (не обязательно)
+    ///@return int или int* или int**
+    int IntGenRandom(int Min, int Max) {
+        int result = Min+rand()%Max;
+        return result;
+    }
     
+    int IntGenRandom(int Min, int Max, int &Val) {
+        Val = Min+rand()%Max;
+        return Val;
+    }
+
+    int* IntGenRandom(int Min, int Max, int Count, bool A) {
+        int result[Count];
+        for (int i = 0; i < Count; i++) {
+            result[i] = Min+rand()%Max;
+        }
+        return result;
+    }
+
+    int* IntGenRandom(int Min, int Max, int* &Val, int Count) {
+        Val = new int[Count];
+        for (int i = 0; i < Count; i++) {
+            Val[i] = Min+rand()%Max;
+        }
+        return Val;
+    }
+
+    int** IntGenRandom(int Min, int Max, int Rows, int Columns, int** &Val) {
+        Val = new int*[Rows];
+        for (int i = 0; i < Rows; i++) {
+            Val[i] = new int[Columns];
+        }
+        for (int i = 0; i < Rows; i++) {
+            for(int j = 0; j < Columns; j++) {
+                Val[i][j] = Min+rand()%Max;
+            }
+            
+        }
+        return Val;
+    }
+
+    //                                                                FLOAT
+
+    ///@param Min int. Минимальное значение
+    ///@param Max int. Максимальное значение
+    ///@param Val double или double* или double**. Переменная, в которую будет записано рандомное число (не обязательно)
+    ///@param Count int. Число значений, которые нужно сгенерировать (не обязательно)
+    ///@param Rows int. число строк 2-х мерного массива, заменяет Count (не обязательно)
+    ///@param Columns int. число столбцов 2-х мерного массива, заменяет Count (не обязательно)
+    ///@return double или double* или double**
+    double FloatGenRandom(int Min, int Max) {
+        double result = Min+rand()%Max;
+        return result;
+    }
     
+    double FloatGenRandom(int Min, int Max, double &Val) {
+        Val = Min+rand()%Max;
+        return Val;
+    }
+
+    double* FloatGenRandom(int Min, int Max, int Count, bool A) {
+        double result[Count];
+        for (int i = 0; i < Count; i++) {
+            result[i] = Min+rand()%Max;
+        }
+        return result;
+    }
+
+    double* FloatGenRandom(int Min, int Max, double* &Val, int Count) {
+        Val = new double[Count];
+        for (int i = 0; i < Count; i++) {
+            Val[i] = Min+rand()%Max;
+        }
+        return Val;
+    }
+
+    double** FloatGenRandom(int Min, int Max, int Rows, int Columns, double** &Val) {
+        Val = new double*[Rows];
+        for (int i = 0; i < Rows; i++) {
+            Val[i] = new double[Columns];
+        }
+        for (int i = 0; i < Rows; i++) {
+            for(int j = 0; j < Columns; j++) {
+                Val[i][j] = Min+rand()%Max;
+            }
+            
+        }
+        return Val;
+    }
 } // namespace Generators
